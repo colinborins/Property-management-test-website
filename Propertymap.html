@@ -1,0 +1,90 @@
+
+<html>
+    
+
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <head>
+        <form method="get" action="/client1.html">
+    <button type="submit">Profile</button>
+</form>
+    <form method="get" action="index.html"><button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Logout</button></form>
+        
+    <style media="screen">
+    body{
+    background-image: url(images/Backgroundimg.jpg);
+    min-height: 100vh;
+    width: 100%;
+    padding:0;
+    margin:0;
+    text-align: center;
+    }
+    </style>
+<body>
+
+<br>
+    <img src="images/Property%20Map.png"><img>
+    <br>
+    <br>
+<div id="map" style="width:100%;height:700px"></div>
+
+<script>
+function myMap() {
+  var myCenter = new google.maps.LatLng(43.657579,-79.393984);
+  var markerLatLng = new google.maps.LatLng(43.653579,-79.385984);
+  var markerLatLng2 = new google.maps.LatLng(43.653579,-79.395984);
+  var markerLatLng3 = new google.maps.LatLng(43.663579,-79.405984);
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {center: myCenter, zoom: 15};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+    
+  var contentString1 = '<img src="http://i.ebayimg.com/00/s/MjI1WDMwMA==/z/9EwAAOSwTZ1XmRX-/$_35.JPG"></img><div>Client: Jonathan Doe</div> <div>Rent: $1000/m </div> <div> Apt 210, 11 Armoury St.</div> <a href= "client1property.html"> View Client Property </a>';
+  var contentString2 = '<img src="http://i.ebayimg.com/00/s/MzI3WDQ1NA==/z/tiIAAOSwImRYF5Do/$_35.JPG"></img><div>Client: Jane DeHan</div> <div>Rent: $1000/m </div><div> Apt 311, 9 Huron St.</div> <a href= "client2property.html"> View Client Property </a>';
+  var contentString3 = '<img src="http://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/lv8AAOSw44BYPa6q/$_35.JPG"></img><div>Client: Clive Russel</div> <div>Rent: $1000/m </div><div> Apt 9, 22 Brunswick Ave.</div> <a href= "client3property.html"> View Client Property </a>';
+  var infowindow = new google.maps.InfoWindow({
+          content: contentString1
+        });
+    
+  var infowindow2 = new google.maps.InfoWindow({
+          content: contentString2
+        });
+    
+  var infowindow3 = new google.maps.InfoWindow({
+          content: contentString3
+        });
+    
+  var marker = new google.maps.Marker({
+      position:markerLatLng,
+      animation: google.maps.Animation.BOUNCE,
+      icon: 'apartment.png'
+  });
+  marker.setMap(map);
+  marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+  var marker2 = new google.maps.Marker({
+      position:markerLatLng2,
+      animation: google.maps.Animation.BOUNCE,
+      icon: 'apartment.png'
+  });
+  marker2.setMap(map);
+  marker2.addListener('click', function() {
+          infowindow2.open(map, marker2);
+        });
+  var marker3 = new google.maps.Marker({
+      position:markerLatLng3,
+      animation: google.maps.Animation.BOUNCE,
+      icon: 'apartment.png'
+  });
+  marker3.setMap(map);
+  marker3.addListener('click', function() {
+          infowindow3.open(map, marker3);
+        });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+</body>
+</html>

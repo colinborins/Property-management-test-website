@@ -1,0 +1,139 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+   <meta name="description" content="Load image from storage"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email/Password Authentication </title>
+    <style media="screen">
+    body{
+        background-image: url(images/Backgroundimg.jpg);
+    min-height: 100vh;
+    width: 100%;
+    padding:0;
+    margin:0;
+    text-align: center;
+    }
+        p.one{
+            color:floralwhite;
+            font-size: 24px;
+        }
+    
+    #uploader(
+    -webkit-apperance; none;
+    apperance: none;
+    width: 50%;
+    margin-bottom:100% ;
+        }
+    </style>
+    <script src="js/index.js"></script>
+    <br>
+    <br>
+    <img src="images/Leasedocument.png"> 
+<form method="get" action="/propertymanager.html">
+    <button type="submit">Profile</button>
+</form>
+    <form method="get" action="index.html"><button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Logout</button></form>
+    <body>
+        <br>
+<progress value="0" max+"100" id="uploader" style="display:none;">0%</progress>
+<p class="one"> To upload your clients lease agreement please name it after client and make it a jpg image.</p>
+        <br>
+        <p style="color:white">Upload to Client1: <input type="file" value="upload to Client1" id="fileButton1" /></p>
+        <p style="color:white">Upload to Client2: <input type="file" value="upload to Client2" id="fileButton2" /></p>
+        <p style="color:white">Upload to Client3: <input type="file" value="upload to Client3" id="fileButton3" /></p>
+        <br>
+<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "",
+    authDomain: ""
+    databaseURL: "",
+    storageBucket: "",
+    messagingSenderId: ""
+  };
+  firebase.initializeApp(config);
+    
+ var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+    
+    fileButton1.addEventListener('change',function(e) {
+      if (confirm('Are you sure you want to save this thing into the database?')) {
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref('client1/' + file.name);
+            var task = storageRef.put(file);
+            
+            task.on('state_changed',
+                   function progress(snapshot){
+                        var percentage = (snapshot.bytesTranferred /
+                                         snapshot.totalBytes) * 100;
+                        uploader.value = percentage;
+                    },
+                            function error(err){
+                        
+                    },
+                            function complete(){
+                        
+                    }
+                   );
+    } else {
+        // Do nothing!
+    }
+        
+        
+    });
+      fileButton2.addEventListener('change',function(e) {
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref('client2/' + file.name);
+        var task = storageRef.put(file);
+        
+        task.on('state_changed',
+               function progress(snapshot){
+            var percentage = (snapshot.bytesTranferred /
+                             snapshot.totalBytes) * 100;
+            uploader.value = percentage;
+        },
+                function error(err){
+            
+        },
+                function complete(){
+            
+        }
+               );
+        } else {}
+        
+    });
+      fileButton3.addEventListener('change',function(e) {
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref('client3/' + file.name);
+        var task = storageRef.put(file);
+        
+        task.on('state_changed',
+               function progress(snapshot){
+            var percentage = (snapshot.bytesTranferred /
+                             snapshot.totalBytes) * 100;
+            uploader.value = percentage;
+        },
+                function error(err){
+            
+        },
+                function complete(){
+            
+        }
+               );
+        } else {}
+    });
+    
+    </script>
+    <form method="get" action="/client1agreement.html">
+    <button type="submit">View client 1 agreement</button>
+</form>
+        <form method="get" action="/client2agreement.html">
+    <button type="submit">View client 2 agreement</button>
+</form>
+        <form method="get" action="/client3agreement.html">
+    <button type="submit">View client 3 agreement</button>
+</form>
+</html>

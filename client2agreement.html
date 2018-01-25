@@ -1,0 +1,46 @@
+ <head>
+        <meta name="description" content="Load image from storage">
+        <meta charset="UTF-8">
+     <style media="screen">
+    body{
+    background-image: url(images/Backgroundimg.jpg);
+    min-height: 100vh;
+    width: 100%;
+    padding:0;
+    margin:0;
+    text-align: center;
+    }
+    </style>
+        <title></title>
+     <br>
+ <form method="get" action="/filetransfer.html">
+    <button type="submit">Document upload page</button>
+</form>
+    <form method="get" action="index.html"><button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Logout</button></form>    <body2>
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <img height="1250" width="1250"/>
+    <script id="jsbin-javascript">
+var config = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    storageBucket: "",
+    messagingSenderId: ""
+  };
+
+firebase.initializeApp(config);
+var storage = firebase.storage();
+var storageRef = storage.ref();
+var tangRef = storageRef.child('client2/client2.png');
+
+firebase.auth().signInAnonymously().then(function() {
+
+  tangRef.getDownloadURL().then(function(url)                             {
+    document.querySelector('img').src = url;
+    
+  }).catch(function(error) {
+    console.error(error);
+  });
+});
+</script>
+</body>
